@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { BsFacebook, BsWhatsapp } from "react-icons/bs";
+import { SiTiktok } from "react-icons/si";
 import { AiOutlineMail, AiOutlineGlobal } from "react-icons/ai";
 import { FiPhone, FiMapPin } from "react-icons/fi";
 
@@ -27,11 +28,20 @@ export function Footer() {
             </p>
             <div className='flex space-x-4'>
               <a
-                href='https://web.facebook.com/ProofSan?_rdc=1&_rdr#'
+                href='https://www.facebook.com/share/1GbwHA47pL/?mibextid=wwXIfr'
                 target='_blank'
                 rel='noopener noreferrer'
-                className='w-8 h-8 bg-white/20 rounded-full flex items-center justify-center cursor-pointer hover:bg-white/30 transition-colors'>
+                className='w-8 h-8 bg-white/20 rounded-full flex items-center justify-center cursor-pointer hover:bg-white/30 transition-colors'
+                aria-label='Facebook'>
                 <BsFacebook className='w-4 h-4' />
+              </a>
+              <a
+                href='https://www.tiktok.com/@proofsan1?_t=ZM-90C0o4ZagYO&_r=1'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='w-8 h-8 bg-white/20 rounded-full flex items-center justify-center cursor-pointer hover:bg-white/30 transition-colors'
+                aria-label='TikTok'>
+                <SiTiktok className='w-4 h-4' />
               </a>
             </div>
           </div>
@@ -43,28 +53,56 @@ export function Footer() {
                 <a
                   href='#products'
                   className='hover:text-white transition-colors'>
-                  DryTex® HB500
+                  DryTex P2000
                 </a>
               </li>
               <li>
                 <a
                   href='#products'
                   className='hover:text-white transition-colors'>
-                  DryTex® CW400
+                  DryTex CEM 2P
                 </a>
               </li>
               <li>
                 <a
                   href='#products'
                   className='hover:text-white transition-colors'>
-                  DryTex CEM HB
+                  Dry Tex CEM HB
                 </a>
               </li>
               <li>
                 <a
                   href='#products'
                   className='hover:text-white transition-colors'>
-                  Hydroplug
+                  DRYBITUMEX R 650
+                </a>
+              </li>
+              <li>
+                <a
+                  href='#products'
+                  className='hover:text-white transition-colors'>
+                  INGUARD
+                </a>
+              </li>
+              <li>
+                <a
+                  href='#products'
+                  className='hover:text-white transition-colors'>
+                  HIGHBOND SBR
+                </a>
+              </li>
+              <li>
+                <a
+                  href='#products'
+                  className='hover:text-white transition-colors'>
+                  Corust GUARD HB
+                </a>
+              </li>
+              <li>
+                <a
+                  href='#products'
+                  className='hover:text-white transition-colors'>
+                  ALLWELD
                 </a>
               </li>
             </ul>
@@ -150,15 +188,15 @@ export function Footer() {
             <div className='space-y-3 text-gray-300'>
               <div className='flex items-start space-x-3'>
                 <FiMapPin className='w-4 h-4 text-white flex-shrink-0 mt-1' />
-                <span>Mogadishu, Somalia</span>
+                <span>Airport Road, Wadajir District, Mogadishu, Somalia</span>
               </div>
               <div className='flex items-start space-x-3'>
                 <FiPhone className='w-4 h-4 text-white flex-shrink-0 mt-1' />
-                <span>+254 719 543 569</span>
+                <span>+252615401468</span>
               </div>
               <div className='flex items-start space-x-3'>
                 <AiOutlineMail className='w-4 h-4 text-white flex-shrink-0 mt-1' />
-                <span>info@proofsan.com</span>
+                <span>info@proofsan.so</span>
               </div>
             </div>
           </div>
