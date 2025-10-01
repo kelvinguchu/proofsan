@@ -176,7 +176,7 @@ export function Navbar() {
                   <Button
                     asChild
                     className='bg-[#053d62] hover:bg-[#053d62]/90 text-white w-full py-3 text-lg font-semibold rounded-lg shadow-sm'>
-                    <a href='mailto:info@proofsan.so'>Get Free Quote</a>
+                    <a href='mailto:info@proofsan.com'>Get Free Quote</a>
                   </Button>
                 </div>
               </div>
