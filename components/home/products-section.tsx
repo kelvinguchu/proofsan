@@ -1,10 +1,14 @@
-import { Card, CardDescription, CardTitle } from "@/components/ui/card";
+"use client";
+
+import Image from "next/image";
+import { useState } from "react";
 
 const featuredProducts = [
   {
     name: "DryTex P2000",
     description:
       "High-performance, solvent-free polyurethane protective coating for seamless, UV-stable roof and surface waterproofing with excellent abrasion, impact, and chemical resistance.",
+    image: "/products/DryTex-P2000.png",
     applications: [
       "Thoroughly mix DRYTEX P2000 before use",
       "Apply by brush, roller, or airless spray; apply second coat if required",
@@ -31,6 +35,7 @@ const featuredProducts = [
     name: "DryTex CEM 2P",
     description:
       "Acrylic polymer-modified, flexible elastomeric cementitious waterproofing for positive and negative side protection of concrete and masonry.",
+    image: "/products/DryTex-CEM-2P.png",
     applications: [
       "Wet the surface with water prior to application for optimal bonding",
       "Apply by brush, roller, or spray; first coat by brush for optimal adhesion",
@@ -57,6 +62,7 @@ const featuredProducts = [
     name: "Dry Tex CEM HB",
     description:
       "High-build cementitious waterproofing membrane with superior flexibility and chemical resistance for durable negative and positive waterproofing.",
+    image: "/products/DryTex-CEM-HB.png",
     applications: [
       "Apply by brush, roller, or spray (first coat by brush for optimal adhesion)",
       "High-build up to 2000 microns wet in one application",
@@ -79,6 +85,7 @@ const featuredProducts = [
     name: "DRYBITUMEX R 650",
     description:
       "Rubberized bituminous waterproof and damp-proof coating with thixotropic performance that cures to a tough, highly flexible, seamless membrane. Cold-applied by brush, roller, trowel, or spray for air, vapor, and water protection on multiple substrates.",
+    image: "/products/DryBITUMEX-R650.png",
     applications: [
       "Damp-proofing below-grade structures",
       "Waterproofing/damp-proofing of masonry, concrete, gypsum board, and wood",
@@ -111,6 +118,7 @@ const featuredProducts = [
     name: "INGUARD",
     description:
       "Penetrating protective sealer for concrete and masonry. Details to be confirmed.",
+    image: "/products/INGUARD.png",
     applications: [
       "Retaining walls",
       "Precast concrete elements",
@@ -143,6 +151,7 @@ const featuredProducts = [
     name: "HIGHBOND SBR",
     description:
       "Styrene-butadiene rubber (SBR) latex bonding agent and mortar modifier. Details to be confirmed.",
+    image: "/products/HIGH-BOND-SBR.png",
     applications: [
       "Dampen hot, exposed or very absorbent surfaces prior to application or prime with 1:8 (SBR:water)",
       "Use washed aggregate and sand gradation matching mortar thickness and finish",
@@ -168,6 +177,7 @@ const featuredProducts = [
     name: "Corust GUARD HB",
     description:
       "High-build anti-corrosive protective coating. Details to be confirmed.",
+    image: "/products/Corust-GUARD-HB.png",
     applications: [
       "Most sound substrates including concrete, wood, and metal floors",
       "Restoration of deteriorated steel and concrete structures",
@@ -192,6 +202,7 @@ const featuredProducts = [
     name: "ALLWELD",
     description:
       "High-strength structural adhesive/anchoring system. Details to be confirmed.",
+    image: "/products/ALLWELD.png",
     applications: [
       "Watertight sealing of penetrations, laps, joints, and voids",
       "Roofing systems: polyurethane foam, EPDM, TPO, PVC, bituminous membranes, PP",
@@ -223,6 +234,157 @@ const featuredProducts = [
   },
 ];
 
+function ProductCard({
+  product,
+}: Readonly<{ product: (typeof featuredProducts)[0] }>) {
+  const hasImage = product.image !== null;
+  const [showAllApplications, setShowAllApplications] = useState(false);
+  const [showAllFeatures, setShowAllFeatures] = useState(false);
+
+  const displayedApplications = showAllApplications
+    ? product.applications
+    : product.applications?.slice(0, 4);
+  const displayedFeatures = showAllFeatures
+    ? product.features
+    : product.features?.slice(0, 4);
+
+  return (
+    <div className='border-2 border-[#053d62]/20 rounded-2xl bg-white hover:border-[#053d62]/40 transition-all duration-300'>
+      <div className={`flex flex-col ${hasImage ? "md:flex-row" : ""}`}>
+        {/* Text content */}
+        <div className='flex-1 p-6'>
+          <h3 className='text-xl font-bold text-[#053d62] mb-3'>
+            {product.name}
+          </h3>
+          <p className='text-gray-600 mb-5 leading-relaxed text-sm'>
+            {product.description}
+          </p>
+
+          <div className='space-y-4'>
+            {product.applications && product.applications.length > 0 && (
+              <div>
+                <h4 className='font-semibold text-[#053d62] mb-2 text-xs uppercase tracking-wide'>
+                  Applications
+                </h4>
+                <ul className='list-disc list-outside pl-4 text-gray-600 space-y-1 text-sm marker:text-[#053d62]'>
+                  {displayedApplications?.map((app, idx) => (
+                    <li key={idx}>{app}</li>
+                  ))}
+                </ul>
+                {product.applications.length > 4 && (
+                  <button
+                    onClick={() => setShowAllApplications(!showAllApplications)}
+                    className='mt-2 text-[#053d62] font-medium text-sm flex items-center gap-1 hover:underline active:scale-95 transition-transform'>
+                    {showAllApplications ? (
+                      <>
+                        <span>Show less</span>
+                        <svg
+                          className='w-4 h-4'
+                          fill='none'
+                          stroke='currentColor'
+                          viewBox='0 0 24 24'>
+                          <path
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            strokeWidth={2}
+                            d='M5 15l7-7 7 7'
+                          />
+                        </svg>
+                      </>
+                    ) : (
+                      <>
+                        <span>+{product.applications.length - 4} more</span>
+                        <svg
+                          className='w-4 h-4'
+                          fill='none'
+                          stroke='currentColor'
+                          viewBox='0 0 24 24'>
+                          <path
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            strokeWidth={2}
+                            d='M19 9l-7 7-7-7'
+                          />
+                        </svg>
+                      </>
+                    )}
+                  </button>
+                )}
+              </div>
+            )}
+            {product.features && product.features.length > 0 && (
+              <div>
+                <h4 className='font-semibold text-[#053d62] mb-2 text-xs uppercase tracking-wide'>
+                  Key Features
+                </h4>
+                <ul className='list-disc list-outside pl-4 text-gray-600 space-y-1 text-sm marker:text-[#053d62]'>
+                  {displayedFeatures?.map((feature, idx) => (
+                    <li key={idx}>{feature}</li>
+                  ))}
+                </ul>
+                {product.features.length > 4 && (
+                  <button
+                    onClick={() => setShowAllFeatures(!showAllFeatures)}
+                    className='mt-2 text-[#053d62] font-medium text-sm flex items-center gap-1 hover:underline active:scale-95 transition-transform'>
+                    {showAllFeatures ? (
+                      <>
+                        <span>Show less</span>
+                        <svg
+                          className='w-4 h-4'
+                          fill='none'
+                          stroke='currentColor'
+                          viewBox='0 0 24 24'>
+                          <path
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            strokeWidth={2}
+                            d='M5 15l7-7 7 7'
+                          />
+                        </svg>
+                      </>
+                    ) : (
+                      <>
+                        <span>+{product.features.length - 4} more</span>
+                        <svg
+                          className='w-4 h-4'
+                          fill='none'
+                          stroke='currentColor'
+                          viewBox='0 0 24 24'>
+                          <path
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            strokeWidth={2}
+                            d='M19 9l-7 7-7-7'
+                          />
+                        </svg>
+                      </>
+                    )}
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Image - right side on desktop, bottom on mobile */}
+        {hasImage && product.image && (
+          <div className='flex items-center justify-center p-4 md:p-6'>
+            <div className='relative w-54 h-66 md:w-56 md:h-64 lg:w-80 lg:h-90'>
+              <Image
+                src={product.image}
+                alt={product.name}
+                fill
+                className='object-contain'
+                sizes='(max-width: 768px) 192px, (max-width: 1024px) 224px, 256px'
+              />
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export function ProductsSection() {
   const jsonLd = {
     "@context": "https://schema.org",
@@ -240,7 +402,7 @@ export function ProductsSection() {
   };
 
   return (
-    <section id='products' className='py-4 md:py-12 bg-white'>
+    <section id='products' className='py-4 md:py-12 bg-white overflow-hidden'>
       <script
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -252,46 +414,9 @@ export function ProductsSection() {
           </h2>
         </div>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-8'>
+        <div className='grid grid-cols-1 gap-8 md:gap-10 w-full mx-auto'>
           {featuredProducts.map((product, index) => (
-            <Card
-              key={index}
-              className='h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1'>
-              <div className='p-6'>
-                <CardTitle className='text-xl text-[#053d62] mb-3'>
-                  {product.name}
-                </CardTitle>
-                <CardDescription className='mb-6 leading-relaxed'>
-                  {product.description}
-                </CardDescription>
-                <div className='space-y-4'>
-                  {product.applications && product.applications.length > 0 && (
-                    <div>
-                      <h4 className='font-semibold text-[#053d62] mb-3 text-sm uppercase tracking-wide'>
-                        Applications
-                      </h4>
-                      <ul className='list-disc list-outside pl-4 text-gray-600 space-y-1 marker:text-[#053d62]'>
-                        {product.applications.map((app, idx) => (
-                          <li key={idx}>{app}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                  {product.features && product.features.length > 0 && (
-                    <div>
-                      <h4 className='font-semibold text-[#053d62] mb-3 text-sm uppercase tracking-wide'>
-                        Key Features
-                      </h4>
-                      <ul className='list-disc list-outside pl-4 text-gray-600 space-y-1 marker:text-[#053d62]'>
-                        {product.features.map((feature, idx) => (
-                          <li key={idx}>{feature}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </Card>
+            <ProductCard key={index} product={product} />
           ))}
         </div>
       </div>
